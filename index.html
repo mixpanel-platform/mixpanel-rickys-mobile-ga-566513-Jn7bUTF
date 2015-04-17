@@ -44,6 +44,9 @@
     <script>
       // get values for all the events you wish to include in funnel a
       var e1a = $('#eventSelect1a').MPEventSelect();
+      e1a.on('change', function(e, selection) {                     // Do something when an option is selected
+        alert(selection);
+      });
       var e2a = $('#eventSelect2a').MPEventSelect();
       var e3a = $('#eventSelect3a').MPEventSelect();
       
@@ -61,14 +64,14 @@
 
       // build query to generate data
       var runQuery = function(){
-        debugger;
+        // debugger;
         // var eventsa = [e1a, e2a, e3a, e4];
         // var eventsb = [e1b, e2b, e3b, e4];
         var dateRange = dateSelect.MPDatepicker('value');
         console.log(e1a);
         console.log(e2a);
 
-        MP.api.funnel('App Open','Game Played').done(function(results) {
+        MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
           debugger;
           console.log(results);
           eventGraph.MPChart('setData', results);
