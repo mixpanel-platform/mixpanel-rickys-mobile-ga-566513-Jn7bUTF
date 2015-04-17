@@ -55,19 +55,18 @@
       // get value for terminating event 
       var e4 = $('#eventSelect4').MPEventSelect();
 
+      // get value for date window
       var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'bar'});
-      // var eventTable  = $('#table').MPTable({
-      //   showPercentages: true,
-      //   firstColHeader: 'Event'
-      // });
 
+      // build query to generate data
       var runQuery = function() {
         // var eventsa = [e1a, e2a, e3a, e4];
         // var eventsb = [e1b, e2b, e3b, e4];
         var dateRange = dateSelect.MPDatepicker('value');
 
         MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
+          debugger;
           console.log(results);
           eventGraph.MPChart('setData', results);
         });
@@ -77,3 +76,6 @@
     </script>
   </body>
 </html>
+
+
+
