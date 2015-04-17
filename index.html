@@ -60,11 +60,11 @@
       var eventGraph  = $('#graph').MPChart({chartType: 'bar'});
 
       // build query to generate data
-      var runQuery = function() {
+      var runQuery = function(e){
         // debugger;
         // var eventsa = [e1a, e2a, e3a, e4];
         // var eventsb = [e1b, e2b, e3b, e4];
-        // var dateRange = dateSelect.MPDatepicker('value');
+        var dateRange = dateSelect.MPDatepicker('value');
         console.log(e1a);
         console.log(e2a);
 
