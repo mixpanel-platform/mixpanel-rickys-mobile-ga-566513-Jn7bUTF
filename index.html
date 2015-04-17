@@ -60,15 +60,15 @@
       var eventGraph  = $('#graph').MPChart({chartType: 'bar'});
 
       // build query to generate data
-      var runQuery = function(e){
-        // debugger;
+      var runQuery = function(){
+        debugger;
         // var eventsa = [e1a, e2a, e3a, e4];
         // var eventsb = [e1b, e2b, e3b, e4];
         var dateRange = dateSelect.MPDatepicker('value');
         console.log(e1a);
         console.log(e2a);
 
-        MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
+        MP.api.funnel('App Open','Game Played').done(function(results) {
           debugger;
           console.log(results);
           eventGraph.MPChart('setData', results);
