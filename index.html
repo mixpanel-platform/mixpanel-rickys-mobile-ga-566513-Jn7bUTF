@@ -45,19 +45,36 @@
       // get values for all the events you wish to include in funnel a
       var e1a = $('#eventSelect1a').MPEventSelect();
       e1a.on('change', function(e, selection) {                     // Do something when an option is selected
-        console.log(selection);
         e1a = selection;
       });
       var e2a = $('#eventSelect2a').MPEventSelect();
+      e2a.on('change', function(e, selection) {                     // Do something when an option is selected
+        e2a = selection;
+      });
       var e3a = $('#eventSelect3a').MPEventSelect();
+      e3a.on('change', function(e, selection) {                     // Do something when an option is selected
+        e3a = selection;
+      });
       
       // get values for all the events you wish to include in funnel b
       var e1b = $('#eventSelect1b').MPEventSelect();
+      e1b.on('change', function(e, selection) {                     // Do something when an option is selected
+        e1b = selection;
+      });
       var e2b = $('#eventSelect2b').MPEventSelect();
+      e2b.on('change', function(e, selection) {                     // Do something when an option is selected
+        e2b = selection;
+      });
       var e3b = $('#eventSelect3b').MPEventSelect();
+      e3b.on('change', function(e, selection) {                     // Do something when an option is selected
+        e3b = selection;
+      });
       
       // get value for terminating event 
       var e4 = $('#eventSelect4').MPEventSelect();
+      e4.on('change', function(e, selection) {                     // Do something when an option is selected
+        e4 = selection;
+      });
 
       // get value for date window
       var dateSelect  = $('#dateSelect').MPDatepicker();
@@ -66,14 +83,10 @@
       // build query to generate data
       var runQuery = function(){
         // debugger;
-        // var eventsa = [e1a, e2a, e3a, e4];
-        // var eventsb = [e1b, e2b, e3b, e4];
         var dateRange = dateSelect.MPDatepicker('value');
-        console.log(e1a);
-        console.log(e2a);
-
+        
         MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
-          debugger;
+          // debugger;
           console.log(results);
           eventGraph.MPChart('setData', results);
         });
