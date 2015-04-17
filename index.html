@@ -8,42 +8,71 @@
   </head>
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
-      <div id="eventSelect" style="float: left;"></div>
-      <div id="by" class="mixpanel-platform-label" style="margin-left: 10px; display: none;">by</div>
-      <div id="propSelect" style="float: left;"></div>
-      <div id="dateSelect" style="float: right;"></div>
+      <table style="width:100%">
+        <tr>
+          <td><div id="lablel1" style="float: left;">Funnel 1</div></td>
+          <td><div id="lablel2" style="float: right;">Funnel 2</div></td>
+        </tr>
+        <tr>
+          <td><div id="eventSelect1a" style="float: left;"></div></td>
+          <td><div id="eventSelect1b" style="float: right;"></div></td>
+        </tr>
+        <tr>
+          <td><div id="eventSelect2a" style="float: left;"></div></td>
+          <td><div id="eventSelect2b" style="float: right;"></div></td>
+        </tr>
+        <tr>
+          <td><div id="eventSelect3a" style="float: left;"></div></td>
+          <td><div id="eventSelect3b" style="float: right;"></div></td>
+        </tr>
+        <tr>
+          <td><div id="lablel2" style="float: left;">Final Event</div></td>
+          <td><div id="lablel2" style="float: right;">Date Range</div></td>
+        </tr>
+        <tr>
+        <td><div id="eventSelect4" style="float: left;"></div></td>
+        <td><div id="dateSelect" style="float: right;"></div></td>
+        </tr>
+      </table>
+      
+      <!--<div id="by" class="mixpanel-platform-label" style="margin-left: 10px; display: none;">by</div>-->
+      <!--<div id="propSelect" style="float: left;"></div>-->
       <div style="clear: both;"></div>
       <div id="graph"></div>
     </div>
     <div id="table"></div>
     <script>
-      var eventSelect = $('#eventSelect').MPEventSelect();
-      var propSelect  = $('#propSelect').MPPropertySelect();
+      // get values for all the events you wish to include in funnel a
+      var e1a = $('#eventSelect1a').MPEventSelect();
+      var e2a = $('#eventSelect2a').MPEventSelect();
+      var e3a = $('#eventSelect3a').MPEventSelect();
+      
+      // get values for all the events you wish to include in funnel b
+      var e1b = $('#eventSelect1b').MPEventSelect();
+      var e2b = $('#eventSelect2b').MPEventSelect();
+      var e3b = $('#eventSelect3b').MPEventSelect();
+      
+      // get value for terminating event 
+      var e4 = $('#eventSelect4').MPEventSelect();
+
       var dateSelect  = $('#dateSelect').MPDatepicker();
-      var eventGraph  = $('#graph').MPChart({chartType: 'line'});
-      var eventTable  = $('#table').MPTable({
-        showPercentages: true,
-        firstColHeader: 'Event'
-      });
+      var eventGraph  = $('#graph').MPChart({chartType: 'bar'});
+      // var eventTable  = $('#table').MPTable({
+      //   showPercentages: true,
+      //   firstColHeader: 'Event'
+      // });
 
       var runQuery = function() {
-        var eventName = eventSelect.MPEventSelect('value'),
-            propName  = propSelect.MPPropertySelect('value'),
-            dateRange = dateSelect.MPDatepicker('value');
+        // var eventsa = [e1a, e2a, e3a, e4];
+        // var eventsb = [e1b, e2b, e3b, e4];
+        var dateRange = dateSelect.MPDatepicker('value');
 
-        if (eventName) {
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
-            eventGraph.MPChart('setData', results);
-            eventTable.MPTable('setData', results);
-          });
+        MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
+          console.log(results);
+          eventGraph.MPChart('setData', results);
+        });
         }
-      };
-      eventSelect.on('change', function(e, eventName) {
-        propSelect.MPPropertySelect('setEvent', eventName);
-        $("#by").show();
-        runQuery();
-      });
-      propSelect.on('change', runQuery);
+      e4.on('change', runQuery);
       dateSelect.on('change', runQuery);
     </script>
   </body>
