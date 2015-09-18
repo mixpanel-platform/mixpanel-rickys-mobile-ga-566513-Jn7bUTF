@@ -87,7 +87,7 @@
         
         MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
           // debugger;
-          console.log(results);
+          console.log('got results', results.values());
           eventGraph.MPChart('setData', results);
         });
         }
