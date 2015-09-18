@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
@@ -87,7 +83,7 @@
         var dateRange = dateSelect.MPDatepicker('value');
         
         MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
-          console.log('e1a','e2a','e3a','e4')
+          console.log(e1a, e2a, e3a, e4)
           console.log(results.values());
           //eventGraph.MPChart('setData', results);
         });
