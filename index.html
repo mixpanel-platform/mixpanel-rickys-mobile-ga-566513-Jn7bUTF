@@ -74,6 +74,7 @@
       var e4 = $('#eventSelect4').MPEventSelect();
       e4.on('change', function(e, selection) {                     // Do something when an option is selected
         e4 = selection;
+        console.log(e4)
       });
 
       // get value for date window
@@ -86,7 +87,7 @@
         var dateRange = dateSelect.MPDatepicker('value');
         
         MP.api.funnel(e1a, e2a, e3a, e4).done(function(results) {
-          console.log('got results', results.values());
+          console.log(results.values());
           //eventGraph.MPChart('setData', results);
         });
         }
